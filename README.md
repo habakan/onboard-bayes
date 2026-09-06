@@ -6,6 +6,13 @@ parses, compiles and samples it inside the WebView.
 
 **[Open it on a phone →](https://habakan.github.io/onboard-bayes/)**
 
+<img src="docs/demo.gif" alt="An out-and-back walk tracked on an iPhone, the path drawn as it goes" width="300">
+
+Seventeen steps out and back, on an iPhone SE in Safari. Every step is detected from
+the accelerometer and every turn integrated from the gyroscope, live. The return leg
+does not land on the outbound one — that gap is the drift, and with no raw magnetometer
+in a browser there is nothing to correct it.
+
 The question is whether you can process phone sensor data with Bayesian inference
 on-device, writing web code only. The answer so far is yes, with three caveats worth
 knowing before you start. Every measurement quoted below is in

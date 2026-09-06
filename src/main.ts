@@ -235,6 +235,16 @@ function build() {
       "reckoning, and heading comes from the gyroscope, so carry the phone flat — " +
       "swinging it at your side doubles the error."),
   );
+  const trackRow = el("div", { class: "controls" });
+  const kInput = el("input", { type: "number", id: "stridek", value: "0.45", step: "0.01", min: "0.1" });
+  const kLabel = el("label", {}, "stride k ");
+  kLabel.append(kInput);
+  const startBtn = el("button", {}, "Start");
+  const stopBtn = el("button", { class: "secondary" }, "Stop");
+  stopBtn.disabled = true;
+  trackRow.append(kLabel, startBtn, stopBtn);
+  app.append(trackRow);
+
   const canvas = el("canvas", { width: "340", height: "340", class: "map" });
   app.append(canvas);
   const trackStat = el("p", { class: "muted mono", id: "trackstat" }, "not started");
@@ -247,6 +257,7 @@ function build() {
   const truthRow = el("div", { class: "controls" });
   const trueInput = el("input", { type: "number", id: "truesteps", placeholder: "steps you counted", min: "1" });
   const checkBtn = el("button", { class: "secondary" }, "Compare");
+  checkBtn.disabled = true;
   truthRow.append(trueInput, checkBtn);
   app.append(truthRow);
 
@@ -259,16 +270,6 @@ function build() {
     log(`detected ${got} vs ${truth} counted: ${pct >= 0 ? "+" : ""}${pct.toFixed(1)}% — ${verdict}`,
         Math.abs(pct) <= 5 ? "info" : "error");
   });
-
-  const trackRow = el("div", { class: "controls" });
-  const kInput = el("input", { type: "number", id: "stridek", value: "0.45", step: "0.01", min: "0.1" });
-  const kLabel = el("label", {}, "stride k ");
-  kLabel.append(kInput);
-  const startBtn = el("button", {}, "Start");
-  const stopBtn = el("button", { class: "secondary" }, "Stop");
-  stopBtn.disabled = true;
-  trackRow.append(kLabel, startBtn, stopBtn);
-  app.append(trackRow);
 
   let tracker: Tracker | null = null;
   startBtn.addEventListener("click", async () => {
@@ -284,6 +285,7 @@ function build() {
       },
       (n) => {
         counter.textContent = String(n);
+        checkBtn.disabled = false;
         counter.classList.add("tick");
         window.setTimeout(() => counter.classList.remove("tick"), 120);
       },
