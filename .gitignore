@@ -1,0 +1,15 @@
+node_modules
+dist
+.vite
+
+# agent instructions — personal setup, not part of the project
+/AGENTS.md
+/CLAUDE.md
+
+# Capacitor build output; ios/App/ itself is tracked
+ios/App/App/public
+ios/App/Pods
+ios/DerivedData
+
+# recorded sensor logs
+recordings

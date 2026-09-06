@@ -1,0 +1,71 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  color: #1a1a1a;
+  background: #fafafa;
+}
+
+body {
+  margin: 0;
+  padding: max(16px, env(safe-area-inset-top)) 16px 24px;
+}
+
+h1 { font-size: 20px; margin: 0 0 4px; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: #666; margin: 24px 0 8px; }
+.muted { color: #666; font-size: 13px; margin: 0 0 12px; }
+.mono { font-family: "SF Mono", Menlo, monospace; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; }
+.controls label { font-size: 13px; color: #555; }
+input[type="number"] { width: 72px; font: inherit; padding: 6px 8px; border: 1px solid #ccc; border-radius: 4px; }
+
+button {
+  font: inherit; font-weight: 600; padding: 10px 16px;
+  border: 1px solid #c2410c; background: #c2410c; color: white;
+  border-radius: 6px; cursor: pointer;
+}
+button:disabled { background: #999; border-color: #999; }
+
+.row {
+  display: grid;
+  grid-template-columns: 5.5em 3em 4.5em 5em 4em 1fr;
+  gap: 8px; align-items: baseline;
+  padding: 8px 0; border-bottom: 1px solid #eee; font-size: 12px;
+}
+.row.head { font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.04em; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.strong { font-weight: 700; }
+
+#results { overflow-x: auto; }
+#log { font-size: 12px; }
+.log { padding: 4px 0; border-bottom: 1px solid #f0f0f0; color: #555; }
+.log.error { color: #b91c1c; }
+.device { font-size: 10px; color: #aaa; margin-top: 24px; word-break: break-all; }
+
+button.primary { background: #1a1a1a; border-color: #1a1a1a; }
+
+.warn { color: #b91c1c; font-weight: 700; }
+
+.map { border: 1px solid #e5e5e5; border-radius: 6px; background: white; max-width: 100%; }
+
+.counter {
+  font-size: 56px; font-weight: 700; font-variant-numeric: tabular-nums;
+  text-align: center; padding: 12px 0; color: #1a1a1a;
+  border: 2px solid #e5e5e5; border-radius: 8px; margin: 8px 0;
+  transition: background 0.08s, color 0.08s;
+}
+.counter.tick { background: #c2410c; color: white; border-color: #c2410c; }
+
+.caps { list-style: none; margin: 0 0 16px; padding: 0; }
+.cap {
+  display: grid; grid-template-columns: 1.2em 9em 1fr; gap: 6px;
+  align-items: baseline; font-size: 12px; padding: 3px 0;
+}
+.cap .dot { font-size: 9px; }
+.cap.ok .dot { color: #15803d; }
+.cap.no .dot { color: #b91c1c; }
+.cap-label { font-weight: 600; color: #444; }
+.cap-detail { color: #777; }
+@media (max-width: 420px) {
+  .cap { grid-template-columns: 1.2em 1fr; }
+  .cap-detail { grid-column: 2; }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "onboard-bayes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host",
+    "verify:rbpf": "tsx src/rbpf/basis-check.mjs && tsx src/rbpf/map-check.mjs && tsx src/rbpf/rbpf-check.mjs && tsx src/rbpf/pdr-check.mjs && tsx src/rbpf/sensitivity-check.mjs && tsx src/rbpf/filter-init-check.mjs && tsx src/rbpf/map-range-check.mjs && tsx src/rbpf/oracle-map-check.mjs && tsx src/rbpf/identifiability-check.mjs && tsx src/rbpf/degradation-check.mjs",
+    "replay": "tsx src/rbpf/replay.mjs",
+    "disturbance": "tsx src/rbpf/disturbance.mjs",
+    "bench:loc": "tsx src/rbpf/localization-bench.mjs"
+  },
+  "dependencies": {
+    "@capacitor/cli": "^8.5.1",
+    "@capacitor/core": "^8.5.1",
+    "@capacitor/ios": "^8.5.1",
+    "stanwasm": "^0.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0"
+  }
+}
