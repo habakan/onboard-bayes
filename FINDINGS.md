@@ -187,33 +187,6 @@ At 200 particles and m=128 a step costs about 19 ms, so roughly 50 Hz on a lapto
 Memory is the binding constraint before speed: each particle's covariance is m×m, so
 500 particles at m=256 would be 250 MB and an iOS WebView would be killed for it.
 
-### Using it
-
-**Tracking** starts the filter on live motion. Steps drive the odometry and, on the
-native build, each batch folds in a field reading. In a browser there is no raw
-magnetometer, so it runs as dead reckoning and says so.
-
-The counter flashes on every detected step. Count your own steps as you walk, type the
-number in afterwards and press Compare — a total on its own cannot tell a missed step
-from a doubled one, and watching the flash while you walk can. Anything past 5% means
-the detection threshold needs revisiting for your gait.
-
-**Stride calibration** records a walk over a distance you type in, repeats, and fits
-`k` — then copies the result into the tracking control. Five walks or more.
-
-**Record for replay** saves the raw sensor stream to `recordings/`, together with the
-step count you type in beforehand. Then:
-
-```bash
-npm run replay                      # newest recording
-npm run replay -- recordings/x.json
-```
-
-sweeps threshold, minimum interval and smoothing against that count and reports how
-much of the grid lands within 5%. Tuning detection any other way costs one walk per
-parameter, which is why this exists — the same replay path also takes a public dataset
-later, if an independent benchmark is wanted.
-
 ### Localization benchmark
 
 ```bash
