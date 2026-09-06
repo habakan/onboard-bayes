@@ -1,8 +1,9 @@
 import { readFile } from "node:fs/promises";
-const R="/Users/habano/work/oss/onboard-bayes";
-const {default:init, StanModel} = await import(`${R}/node_modules/stanwasm/index.js`);
-await init({module_or_path: await readFile(`${R}/node_modules/stanwasm/pkg/stanwasm_bg.wasm`)});
-const { STRIDE_K } = await import(`${R}/src/models.ts`);
+import init, { StanModel } from "stanwasm";
+import { STRIDE_K } from "../models.ts";
+
+const wasm = new URL("../../node_modules/stanwasm/pkg/stanwasm_bg.wasm", import.meta.url);
+await init({ module_or_path: await readFile(wasm) });
 
 const K_TRUE = 0.45, TAU_TRUE = 0.02;
 // W 回の歩行。ペースが違うので k が少しばらつく
